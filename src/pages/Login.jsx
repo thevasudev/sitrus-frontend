@@ -1,5 +1,5 @@
 // src/pages/Login.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import theme from "../theme/Theme";
 import { login } from "../api/authApi";
@@ -11,8 +11,8 @@ const styles = {
     minHeight: "100vh",
     display: "grid",
     placeItems: "center",
-    background: theme.gradients.hero,
-    padding: 16,
+    // background: theme.gradients.hero,
+    // padding: 16,
     fontFamily: theme.fonts.body,
   },
   card: {
@@ -25,6 +25,10 @@ const styles = {
     overflow: "hidden",
     display: "grid",
     gridTemplateColumns: "1.1fr 1fr",
+    '@media (max-width: 860px)': {
+      gridTemplateColumns: "1fr",
+      maxWidth: "400px",
+    },
   },
   left: {
     padding: 28,
@@ -32,9 +36,20 @@ const styles = {
     flexDirection: "column",
     gap: 16,
     background: theme.gradients.card,
+    '@media (max-width: 860px)': {
+      padding: 20,
+      display: "none", // Hide left panel on mobile
+    },
   },
-  /** NEW: brand row + logo **/
-  brandRow: { display: "flex", alignItems: "center", gap: 12 },
+  brandRow: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    '@media (max-width: 860px)': {
+      justifyContent: "center",
+      marginBottom: 16,
+    },
+  },
   brandLogoBox: {
     width: 48,
     height: 48,
@@ -53,29 +68,57 @@ const styles = {
     objectFit: "cover",
     display: "block",
   },
-
   title: {
     margin: 0,
     fontFamily: theme.fonts.heading,
     fontSize: 28,
     color: theme.colors.primaryDark,
+    '@media (max-width: 860px)': {
+      fontSize: 24,
+      textAlign: "center",
+    },
   },
-  subtitle: { margin: 0, color: theme.colors.secondary },
+  subtitle: {
+    margin: 0,
+    color: theme.colors.secondary,
+    '@media (max-width: 860px)': {
+      textAlign: "center",
+    },
+  },
   leftFooter: {
     marginTop: "auto",
     fontSize: 12,
     color: theme.colors.mutedForeground,
   },
-
   right: {
     padding: 28,
     display: "flex",
     flexDirection: "column",
     gap: 16,
     background: theme.colors.card,
+    '@media (max-width: 860px)': {
+      padding: 24,
+    },
+    '@media (max-width: 480px)': {
+      padding: 20,
+    },
   },
-  field: { display: "grid", gap: 8 },
-  label: { fontWeight: 600 },
+  mobileBrand: {
+    display: "none",
+    '@media (max-width: 860px)': {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      marginBottom: 16,
+    },
+  },
+  field: {
+    display: "grid",
+    gap: 8,
+  },
+  label: {
+    fontWeight: 600,
+  },
   inputWrap: {
     display: "flex",
     alignItems: "center",
@@ -93,6 +136,7 @@ const styles = {
     width: "100%",
     color: theme.colors.cardForeground,
     fontFamily: "inherit",
+    fontSize: "16px", // Prevents zoom on iOS
   },
   toggleBtn: {
     border: "none",
@@ -105,6 +149,7 @@ const styles = {
     color: theme.colors.destructiveForeground,
     borderRadius: theme.radii.md,
     padding: "10px 12px",
+    fontSize: 14,
   },
   submit: {
     border: "none",
@@ -116,12 +161,36 @@ const styles = {
     color: theme.colors.primaryForeground,
     transition: theme.transitions.smooth,
     boxShadow: theme.shadows.accent,
+    fontSize: 16,
+    marginTop: 8,
   },
-  divider: { height: 1, background: theme.colors.border, margin: "6px 0 2px" },
-  smallLink: { color: theme.colors.secondary, textDecoration: "none" },
+  divider: {
+    height: 1,
+    background: theme.colors.border,
+    margin: "6px 0 2px",
+  },
+  smallLink: {
+    color: theme.colors.secondary,
+    textDecoration: "none",
+    fontSize: 14,
+  },
+};
 
-  // simple “mobile” toggle
-  cardMobile: { gridTemplateColumns: "1fr" },
+// Helper function to apply media queries
+const applyMediaQueries = (baseStyle) => {
+  const style = { ...baseStyle };
+  Object.keys(style).forEach(key => {
+    if (key.startsWith('@media')) {
+      const mediaQuery = key;
+      const mediaStyles = style[key];
+      delete style[key];
+      
+      if (window.matchMedia(mediaQuery.replace('@media ', '')).matches) {
+        Object.assign(style, mediaStyles);
+      }
+    }
+  });
+  return style;
 };
 
 function EyeIcon({ on, size = 18 }) {
@@ -140,6 +209,16 @@ function EyeIcon({ on, size = 18 }) {
 
 export default function Login() {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 860);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 860);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const existingToken =
     localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
@@ -180,16 +259,16 @@ export default function Login() {
     }
   };
 
+  const cardStyle = applyMediaQueries(styles.card);
+  const leftStyle = applyMediaQueries(styles.left);
+  const rightStyle = applyMediaQueries(styles.right);
+  const mobileBrandStyle = applyMediaQueries(styles.mobileBrand);
+
   return (
     <div style={styles.page}>
-      <div
-        style={{
-          ...styles.card,
-          ...(window.innerWidth < 860 ? styles.cardMobile : {}),
-        }}
-      >
-        {/* LEFT: brand + notes */}
-        <div style={styles.left}>
+      <div style={cardStyle}>
+        {/* LEFT: brand + notes - Hidden on mobile */}
+        <div style={leftStyle}>
           <div style={styles.brandRow}>
             <div style={styles.brandLogoBox}>
               <img src={Logo} alt="Sitrus Projects logo" style={styles.brandLogoImg} />
@@ -212,15 +291,28 @@ export default function Login() {
         </div>
 
         {/* RIGHT: form */}
-        <div style={styles.right}>
-          <h3 style={{ ...styles.title, fontSize: 22, color: theme.colors.primary }}>Welcome back</h3>
-          <p style={{ marginTop: -8, color: theme.colors.mutedForeground }}>
+        <div style={rightStyle}>
+          {/* Mobile-only brand header */}
+          {isMobile && (
+            <div style={mobileBrandStyle}>
+              <div style={styles.brandLogoBox}>
+                <img src={Logo} alt="Sitrus Projects logo" style={styles.brandLogoImg} />
+              </div>
+              <h2 style={{...styles.title, marginTop: 8}}>Sitrus projects</h2>
+              <p style={styles.subtitle}>Sign in to manage content & data</p>
+            </div>
+          )}
+
+          <h3 style={{ ...styles.title, fontSize: 22, color: theme.colors.primary, marginBottom: 8 }}>
+            Welcome back
+          </h3>
+          <p style={{ marginTop: -8, color: theme.colors.mutedForeground, marginBottom: 16 }}>
             Enter your credentials to continue.
           </p>
 
           {err && <div style={styles.error}>⚠ {err}</div>}
 
-          <form onSubmit={onSubmit} style={{ display: "grid", gap: 14 }}>
+          <form onSubmit={onSubmit} style={{ display: "grid", gap: 16 }}>
             <div style={styles.field}>
               <label style={styles.label}>Email</label>
               <div style={styles.inputWrap}>
