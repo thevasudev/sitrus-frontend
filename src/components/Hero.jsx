@@ -102,6 +102,12 @@ export default function Hero({
         @media (max-width: ${theme.breakpoints.tablet}) {
           .hero__text { padding: clamp(12px, 5vw, 28px); }
         }
+        //   @media (max-width: ${theme.breakpoints.xm}) {
+        //   .hero__text { 
+        //   margin-right: 1px;
+        //   font-size: clamp(22px, 5.2vw, 36px);
+        //   font-weight: 100;}
+        // }
 
         @media (max-width: ${theme.breakpoints.mobile}) {
           .hero__text {
@@ -112,7 +118,8 @@ export default function Hero({
           }
           .hero__headline {
             text-align: center;
-            font-size: clamp(22px, 7.2vw, 36px);
+            margin-left: 20px;
+            font-size: clamp(22px, 5.5vw, 36px);
           }
         }
       `}</style>

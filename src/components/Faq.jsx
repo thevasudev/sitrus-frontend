@@ -90,7 +90,6 @@ export default function FAQSection({
     faqItem: {
       borderBottom: `1px solid ${theme.colors.border}`,
       padding: "20px 0",
-      
     },
     faqQuestion: {
       display: "flex",
@@ -100,7 +99,6 @@ export default function FAQSection({
       fontWeight: 600,
       fontSize: "1.1rem",
       color: "#000",
-      
     },
     faqAnswer: {
       paddingTop: 16,
@@ -156,50 +154,50 @@ export default function FAQSection({
         <div style={styles.divider} />
 
         {/* Accordion list (only this block changed) */}
-<div className="acc-list">
-  {faqItems.map((item, i) => {
-    const open = activeIndex === i;
-    return (
-      <div key={i} className={`acc-item ${open ? "open" : ""}`}>
-        <button
-          className="acc-q"
-          onClick={() => toggleFAQ(i)}
-          aria-expanded={open}
-          aria-controls={`acc-panel-${i}`}
-          id={`acc-btn-${i}`}
-        >
-          <span className="acc-q__text">{item.question}</span>
-          <svg
-            className="acc-q__chev"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            aria-hidden="true"
-          >
-            <path d="M6 9l6 6 6-6" />
-          </svg>
-        </button>
+        <div className="acc-list">
+          {faqItems.map((item, i) => {
+            const open = activeIndex === i;
+            return (
+              <div key={i} className={`acc-item ${open ? "open" : ""}`}>
+                <button
+                  className="acc-q"
+                  onClick={() => toggleFAQ(i)}
+                  aria-expanded={open}
+                  aria-controls={`acc-panel-${i}`}
+                  id={`acc-btn-${i}`}
+                >
+                  <span className="acc-q__text">{item.question}</span>
+                  <svg
+                    className="acc-q__chev"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </button>
 
-        <div
-          id={`acc-panel-${i}`}
-          role="region"
-          aria-labelledby={`acc-btn-${i}`}
-          className="acc-a"
-          style={{ maxHeight: open ? "320px" : "0px" }}
-        >
-          <div className="acc-a__inner">
-            <p>{item.answer}</p>
-          </div>
+                <div
+                  id={`acc-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`acc-btn-${i}`}
+                  className="acc-a"
+                  style={{ maxHeight: open ? "320px" : "0px" }}
+                >
+                  <div className="acc-a__inner">
+                    <p>{item.answer}</p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </div>
-    );
-  })}
-</div>
 
-        <div style={styles.helpSection}>
+        {/* <div style={styles.helpSection}>
           <h3 style={styles.helpHeading}>Still have questions?</h3>
           <p style={styles.helpText}>
             We're here to help! Contact our team directly for personalized
@@ -208,11 +206,11 @@ export default function FAQSection({
           <button className="faq-btn" style={styles.button} onClick={openModal}>
             Contact Us
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Contact Modal */}
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div
             className="modal-content contact-modal"
@@ -337,7 +335,7 @@ export default function FAQSection({
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Section chrome */}
       <style>{`
