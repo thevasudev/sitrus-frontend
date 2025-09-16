@@ -11,8 +11,7 @@ const styles = {
     minHeight: "100vh",
     display: "grid",
     placeItems: "center",
-    // background: theme.gradients.hero,
-    // padding: 16,
+
     fontFamily: theme.fonts.body,
   },
   card: {
