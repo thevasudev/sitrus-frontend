@@ -176,7 +176,8 @@ export default function Footer() {
           display: grid; place-items: center; box-shadow: ${theme.shadows.accent};
         }
         .brand__name { margin: 0; font-family: ${theme.fonts.heading}; font-size: 1.4rem; font-weight: 700; letter-spacing: .2px; }
-        .brand__copy { color: ${theme.colors.accentMuted}; max-width: 780px; line-height: 1.8; margin: 10px 0 18px; }
+        .brand__copy { color: hsl(var(--primary-foreground) / 0.8); max-width: 780px; line-height: 1.625; margin: 10px 0 18px; 
+          font-size: 1rem;}
 
         .contact { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; color: ${theme.colors.card}; }
         .contact li { display: grid; grid-template-columns: 22px 1fr; align-items: start; gap: 10px; }

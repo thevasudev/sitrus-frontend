@@ -272,6 +272,11 @@ export default function Contact() {
                     placeholder="Tell us about your real estate needs..."
                     value={form.message}
                     onChange={onChange}
+                    style={{
+                      fontFamily: theme.fonts.body,
+                      fontSize: "1rem",
+                      lineHeight: "1.5rem",
+                    }}
                   />
                 </div>
               </div>
@@ -300,6 +305,7 @@ export default function Contact() {
 
       {/* Styles */}
       <style>{`
+      
         .contact-wrap, .contact-wrap * { box-sizing: border-box; }
         .contact-wrap {
           position: relative;
@@ -330,26 +336,28 @@ export default function Contact() {
         .title{
           margin: 0 0 8px;
           font-family: ${theme.fonts.heading};
-          line-height: 1.1;
+          line-height: 1;
           letter-spacing: .2px;
         }
         .title .line1{
           display:block;
-          font-weight: 800;
-          font-size: clamp(26px, 3.6vw, 42px);
-          color: #163a2a; /* dark greenish (legible on light wash) */
+          font-weight: 700;
+          font-size: 3rem;
+          color: #0a0a0aff; /* dark greenish (legible on light wash) */
           text-shadow: none;
         }
         .title .line2{
           display:block;
-          font-weight: 800;
-          font-size: clamp(28px, 3.9vw, 46px);
+          font-weight: 700;
+       font-size: 3rem;
           color: ${theme.colors.primary};
         }
         .subtitle{
           margin: 0 auto;
           max-width: 820px;
-          color: ${theme.colors.secondary};
+          color: ${theme.colors.card};
+          font-size: 1.25rem;
+          line-height: 1.75rem;
         }
 
         .grid{
@@ -358,9 +366,19 @@ export default function Contact() {
           gap: 28px;
           align-items: start;
         }
-        @media (max-width: ${theme.breakpoints.tablet}) {
-          .grid{ grid-template-columns: 1fr; }
-        }
+      @media (max-width: ${theme.breakpoints.tablet}) {
+  .grid{ grid-template-columns: 1fr; }
+}
+@media (max-width: 1024px) and (min-width: 769px) {
+  .grid{ grid-template-columns: 280px 1fr; }
+  .card{ grid-template-columns: 40px 1fr; gap: 12px; padding: 16px; }
+  .icon{ width: 40px; height: 40px; }
+}
+@media (max-width: ${theme.breakpoints.mobile}) {
+  .row{ grid-template-columns: 1fr; }
+  .title .line1, .title .line2{ font-size: 2.5rem; }
+  .subtitle{ font-size: 1.125rem; }
+}
 
         /* left info stack */
         .info{ display: grid; gap: 16px; }
@@ -382,11 +400,17 @@ export default function Contact() {
           border-radius: 999px;
           display: grid; place-items: center;
           color: ${theme.colors.primaryForeground};
-          background: ${theme.gradients.primary};
+          background-color: rgb(255 255 255 / 0.1);
           box-shadow: ${theme.shadows.accent};
         }
-        .card-title{ font-weight: 700; }
-        .card-desc{ color: rgba(255,255,255,.9); margin: 4px 0 6px; }
+        .card-title{ font-weight: 700;
+        font-size:1.2rem; }
+        .card-desc{ color: rgba(255,255,255,.9); 
+        margin: 4px 0 6px;
+        font-size:1.1rem;
+        line-height:1.25rem;
+        texrt-opacity:1;
+        }
         .card-link{
           color: #fff; text-decoration: none; font-weight: 700;
           border-bottom: 1px dashed rgba(255,255,255,.6);
@@ -395,7 +419,15 @@ export default function Contact() {
 
         /* form card */
         .form-card{
-          background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.88));
+         --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+     background-color: hsl(var(--card) / 0.5);     
+    
+      --tw-backdrop-blur: blur(4px);
+    -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+     background: linear-gradient(180deg, rgba(241, 241, 241, 0.88), rgba(204, 201, 201, 0.88));
           border: 1px solid ${theme.colors.border};
           border-radius: 18px;
           box-shadow: 0 22px 44px rgba(0,0,0,.12);
@@ -419,6 +451,8 @@ export default function Contact() {
           grid-template-columns: repeat(2, minmax(220px, 1fr));
           gap: 12px;
           width: 100%;
+          font-family: ${theme.fonts.body};
+
         }
         .row .full{ grid-column: 1 / -1; }
 

@@ -150,8 +150,9 @@ export default function About({
           text-align: center;
           font-weight: 800;
           letter-spacing: .2px;
-          line-height: 1.1;
-          font-size: clamp(28px, 5.2vw, 54px);
+          line-height: 1;
+          font-size: 3rem;
+          font-weight: 700;
         }
         .trust__title-green { color: ${green}; }
         .md-break { display: none; }
@@ -163,9 +164,11 @@ export default function About({
           max-width: 980px;
           margin: 0 auto;
           text-align: center;
-          line-height: 1.7;
+          line-height: 1.625;
           color: ${theme.colors.accentForeground};
-          font-size: clamp(14px, 1.6vw, 18px);
+          // font-size: clamp(14px, 1.6vw, 18px);
+          font-size: 1.25rem;
+          line-height: 1.625rem;
         }
 
         .trust__highlights {
@@ -219,9 +222,11 @@ export default function About({
         .trust__services-title {
           text-align: center;
           font-family: ${theme.fonts.heading};
-          font-weight: 800;
+          font-weight: 700;
           margin: 0 0 18px;
-          font-size: clamp(18px, 3.2vw, 26px);
+          font-size: 1.5rem;
+          line-height: 2rem;
+          // font-size: clamp(18px, 3.2vw, 26px);
           color: ${theme.colors.cardForeground};
         }
 

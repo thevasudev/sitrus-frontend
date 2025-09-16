@@ -27,7 +27,10 @@ function statusColors(status) {
     case "ongoing":
       return { bg: theme.colors.accent, fg: theme.colors.accentForeground };
     case "completed":
-      return { bg: theme.colors.secondary, fg: theme.colors.secondaryForeground };
+      return {
+        bg: theme.colors.secondary,
+        fg: theme.colors.secondaryForeground,
+      };
     case "upcoming":
       return { bg: theme.colors.primary, fg: theme.colors.primaryForeground };
     default:
@@ -78,18 +81,26 @@ export default function FeaturedProperties({
         if (mounted) setData(Array.isArray(list) ? list : []);
       } catch (e) {
         if (mounted)
-          setError(e?.response?.data?.message || e?.message || "Failed to load properties");
+          setError(
+            e?.response?.data?.message ||
+              e?.message ||
+              "Failed to load properties"
+          );
       } finally {
         if (mounted) setLoading(false);
       }
     }
     run();
-    return () => { mounted = false; };
+    return () => {
+      mounted = false;
+    };
   }, [items]);
 
   const filtered = useMemo(() => {
     if (!statusFilter || statusFilter === "all") return data;
-    return (data || []).filter((p) => (p.status || "").toLowerCase() === statusFilter);
+    return (data || []).filter(
+      (p) => (p.status || "").toLowerCase() === statusFilter
+    );
   }, [data, statusFilter]);
 
   const grouped = useMemo(() => {
@@ -122,9 +133,11 @@ export default function FeaturedProperties({
     },
     h2: {
       fontFamily: theme.fonts.heading,
-      fontWeight: 800,
+      // fontWeight: 800,
+      fontSize: "3rem",
+      lineHeight: 1,
       textAlign: "center",
-      fontSize: "clamp(28px, 4.4vw, 54px)",
+      // fontSize: "clamp(28px, 4.4vw, 54px)",
       margin: 0,
       color: theme.colors.cardForeground,
     },
@@ -134,8 +147,9 @@ export default function FeaturedProperties({
       color: theme.colors.primaryForeground,
       maxWidth: 820,
       marginInline: "auto",
-      lineHeight: 1.6,
-      fontSize: "clamp(14px, 1.6vw, 18px)",
+      lineHeight: "1.75rem",
+      // fontSize: "clamp(14px, 1.6vw, 18px)",
+      fontSize: "1.25rem",
     },
     chips: {
       marginTop: 22,
@@ -188,10 +202,18 @@ export default function FeaturedProperties({
     title: {
       margin: 0,
       fontFamily: theme.fonts.heading,
-      fontSize: "clamp(16px, 2vw, 20px)",
+      // fontSize: "clamp(16px, 2vw, 20px)",
+      fontWeight: 600,
+      fontSize: "1.25rem",
+      lineHeight: 1.75,
       color: theme.colors.cardForeground,
     },
-    metaRow: { display: "flex", alignItems: "center", gap: 8, color: theme.colors.mutedForeground },
+    metaRow: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      color: theme.colors.mutedForeground,
+    },
     price: {
       color: theme.colors.success,
       fontWeight: 800,
@@ -228,18 +250,25 @@ export default function FeaturedProperties({
       {/* ⬇️ Overlay removed to avoid tinting the global background */}
 
       <div style={styles.inner}>
-        <h2 id="featured-heading" style={styles.h2}>{title}</h2>
+        <h2 id="featured-heading" style={styles.h2}>
+          {title}
+        </h2>
         <p style={styles.sub}>{subtitle}</p>
 
         {/* filter chips */}
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 18 }}>
+        <div
+          style={{ display: "flex", justifyContent: "center", marginTop: 18 }}
+        >
           <div style={styles.chips}>
             {["all", "ongoing", "completed"].map((key) => (
               <button
                 key={key}
                 type="button"
                 onClick={() => setStatusFilter(key)}
-                style={{ ...chipBase, ...(statusFilter === key ? chipActive : null) }}
+                style={{
+                  ...chipBase,
+                  ...(statusFilter === key ? chipActive : null),
+                }}
               >
                 {key[0].toUpperCase() + key.slice(1)}
               </button>
@@ -249,76 +278,138 @@ export default function FeaturedProperties({
 
         {/* error / loading */}
         {error && (
-          <div style={{ marginTop: 18, textAlign: "center", color: theme.colors.destructive }}>
+          <div
+            style={{
+              marginTop: 18,
+              textAlign: "center",
+              color: theme.colors.destructive,
+            }}
+          >
             {error}
           </div>
         )}
         {loading && (
-          <div style={{ marginTop: 22, textAlign: "center", color: theme.colors.mutedForeground }}>
+          <div
+            style={{
+              marginTop: 22,
+              textAlign: "center",
+              color: theme.colors.mutedForeground,
+            }}
+          >
             Loading properties…
           </div>
         )}
 
         {/* grouped grids */}
-        {!loading && !error && grouped.map(([typeKey, items]) => (
-          <div key={typeKey} style={styles.gridWrap}>
-            <h3 style={styles.typeTitle}>{typeKey[0].toUpperCase() + typeKey.slice(1)}</h3>
+        {!loading &&
+          !error &&
+          grouped.map(([typeKey, items]) => (
+            <div key={typeKey} style={styles.gridWrap}>
+              <h3 style={styles.typeTitle}>
+                {typeKey[0].toUpperCase() + typeKey.slice(1)}
+              </h3>
 
-            <div className="fp-grid">
-              {items.map((p) => {
-                const firstImg = Array.isArray(p.images) && p.images.length ? p.images[0] : "";
-                const sc = statusColors(p.status);
-                return (
-                  <article key={p._id} style={styles.card}>
-                    <div className="fp-media">
-                      <div style={styles.badgeRow}>
-                        <span style={styles.badge}>{p.type || "Property"}</span>
-                        <span style={{ ...styles.badge, background: sc.bg, color: sc.fg, border: "none" }}>
-                          {(p.status || "").charAt(0).toUpperCase() + (p.status || "").slice(1)}
-                        </span>
-                      </div>
-                      {firstImg ? (
-                        <img src={firstImg} alt={p.title} style={styles.img} />
-                      ) : (
-                        <div style={{ ...styles.img, background: theme.colors.muted }} />
-                      )}
-                    </div>
-
-                    <div style={styles.body}>
-                      <h4 style={styles.title}>{p.title || "Untitled"}</h4>
-
-                      <div style={styles.metaRow}>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                          <path d="M12 21s-7-6.58-7-11a7 7 0 1 1 14 0c0 4.42-7 11-7 11z" stroke="currentColor" strokeWidth="2" />
-                          <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="2" />
-                        </svg>
-                        <span>{p.location || "-"}</span>
-                      </div>
-
-                      <div style={styles.price}>{formatINR(p.price)}</div>
-
-                      <p style={styles.descr}>{p.features || "—"}</p>
-
-                      <Link to={`/properties/${p._id}`} style={{ textDecoration: "none" }}>
-                        <div style={styles.ctaWrap}>
-                          <button
-                            type="button"
-                            style={styles.cta}
-                            onMouseOver={(e) => (e.currentTarget.style.background = theme.colors.card)}
-                            onMouseOut={(e) => (e.currentTarget.style.background = theme.colors.cardHover)}
-                            onClick={() => navigate(`/properties/${p._id}`)}
+              <div className="fp-grid">
+                {items.map((p) => {
+                  const firstImg =
+                    Array.isArray(p.images) && p.images.length
+                      ? p.images[0]
+                      : "";
+                  const sc = statusColors(p.status);
+                  return (
+                    <article key={p._id} style={styles.card}>
+                      <div className="fp-media">
+                        <div style={styles.badgeRow}>
+                          <span style={styles.badge}>
+                            {p.type || "Property"}
+                          </span>
+                          <span
+                            style={{
+                              ...styles.badge,
+                              background: sc.bg,
+                              color: sc.fg,
+                              border: "none",
+                            }}
                           >
-                            View Details
-                          </button>
+                            {(p.status || "").charAt(0).toUpperCase() +
+                              (p.status || "").slice(1)}
+                          </span>
                         </div>
-                      </Link>
-                    </div>
-                  </article>
-                );
-              })}
+                        {firstImg ? (
+                          <img
+                            src={firstImg}
+                            alt={p.title}
+                            style={styles.img}
+                          />
+                        ) : (
+                          <div
+                            style={{
+                              ...styles.img,
+                              background: theme.colors.muted,
+                            }}
+                          />
+                        )}
+                      </div>
+
+                      <div style={styles.body}>
+                        <h4 style={styles.title}>{p.title || "Untitled"}</h4>
+
+                        <div style={styles.metaRow}>
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                          >
+                            <path
+                              d="M12 21s-7-6.58-7-11a7 7 0 1 1 14 0c0 4.42-7 11-7 11z"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            />
+                            <circle
+                              cx="12"
+                              cy="10"
+                              r="3"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            />
+                          </svg>
+                          <span>{p.location || "-"}</span>
+                        </div>
+
+                        <div style={styles.price}>{formatINR(p.price)}</div>
+
+                        <p style={styles.descr}>{p.features || "—"}</p>
+
+                        <Link
+                          to={`/properties/${p._id}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <div style={styles.ctaWrap}>
+                            <button
+                              type="button"
+                              style={styles.cta}
+                              onMouseOver={(e) =>
+                                (e.currentTarget.style.background =
+                                  theme.colors.card)
+                              }
+                              onMouseOut={(e) =>
+                                (e.currentTarget.style.background =
+                                  theme.colors.cardHover)
+                              }
+                              onClick={() => navigate(`/properties/${p._id}`)}
+                            >
+                              View Details
+                            </button>
+                          </div>
+                        </Link>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       {/* REAL media queries */}
@@ -347,4 +438,3 @@ export default function FeaturedProperties({
     </section>
   );
 }
- 

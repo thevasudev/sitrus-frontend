@@ -107,7 +107,12 @@ export default function Team() {
         //   color:${theme.colors.blueishblack}
           ;
         }
-        .subtitletwo{ margin:0; color:${theme.colors.secondaryForeground}; }
+        .subtitletwo{ 
+        margin:0;
+         color:${theme.colors.secondaryForeground};
+         font-size:1.3rem !important;,
+         line-height:1.75;
+          }
 
         .error{ color:${theme.colors.destructive}; text-align:center; margin: 10px 0 16px; }
 
@@ -151,15 +156,24 @@ export default function Team() {
         }
         .role{
           color: ${theme.hex?.goldenyellow || "hsl(34 80% 48%)"};
-          font-weight: 700; font-style: italic; margin-bottom: 14px;
+          font-weight: 600; 
+          // font-style: italic;
+           margin-bottom: 14px;
           font-size: clamp(15px, 1.8vw, 18px);
         }
 
         /* Description LEFT aligned; clamp to keep both cards equal height */
         .desc{
-          margin: 0; width: 100%; max-width: 760px;
-          color:${theme.colors.mutedForeground}; line-height: 1.7; text-align: left;
-          display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden;
+          margin: 0;
+           width: 100%;
+           max-width: 760px;
+          color:${theme.colors.mutedForeground}; 
+          line-height: 1.625; 
+          text-align: center;
+          display: -webkit-box; 
+          -webkit-line-clamp: 7;
+           -webkit-box-orient: vertical; 
+           overflow: hidden;
           flex: 1 1 auto;
         }
 

@@ -46,19 +46,19 @@ export default function Hero({
           --header-h: 72px; /* default; overridden by prop */
           position: relative;
           isolation: isolate;
-          background: ${theme.colors.background};
-          border-bottom: 1px solid ${theme.colors.border};
+          // background: ${theme.colors.background};
         }
 
         /* Make the media fill the viewport height minus header.
            Multiple lines = graceful fallback across browsers. */
         .hero__media {
           position: relative;
-          height: calc(100vh - var(--header-h));   /* fallback */
-          height: calc(100dvh - var(--header-h));  /* dynamic vh */
-          height: calc(100svh - var(--header-h));  /* small viewport */
+        height: calc(100vh - var(--header-h));
+  height: calc(100dvh - var(--header-h));
+  height: calc(100svh - var(--header-h));
           min-height: 520px;                        /* don't get too small */
           overflow: hidden;
+           margin-top: -7px;
         }
 
         .hero__img {
@@ -80,7 +80,10 @@ export default function Hero({
           display: grid;
           justify-items: end;
           align-content: start;
-          padding: clamp(12px, 4vw, 40px);
+          margin-right: 20px;
+          // padding: clamp(12px, 4vw, 40px);
+         
+
         }
 
         .hero__headline {

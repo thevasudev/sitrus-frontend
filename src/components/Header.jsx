@@ -67,7 +67,13 @@ export default function SiteHeader({ brand = "Sitrus projects" }) {
           onClick={() => setOpen((s) => !s)}
         >
           <svg width="22" height="22" viewBox="0 0 24 24">
-            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" />
+            <path
+              d="M3 6h18M3 12h18M3 18h18"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              fill="none"
+            />
           </svg>
         </button>
       </div>
@@ -93,10 +99,11 @@ export default function SiteHeader({ brand = "Sitrus projects" }) {
         .sh__bar {
           max-width: 1280px; margin: 0 auto; padding: 10px 18px;
           display: flex; align-items: center; gap: 16px;
+          height: 80px;
         }
         .sh__brandWrap { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1 1 auto; }
         .sh__logoBox {
-          width: 56px; height: 56px; border-radius: ${theme.radii.md};
+          width: 170px; height: 100px; border-radius: ${theme.radii.md};
           overflow: hidden; background: ${theme.colors.muted};
           display: grid; place-items: center; box-shadow: ${theme.shadows.sm};
         }
@@ -106,7 +113,32 @@ export default function SiteHeader({ brand = "Sitrus projects" }) {
           color: ${theme.colors.foreground}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
 
-        .sh__nav { display: flex; align-items: center; gap: 28px; }
+        .sh__nav { display: flex; 
+        align-items: center; 
+        
+        gap: 28px; }
+        /* --- Mobile header fixes --- */
+@media (max-width: 900px) {
+  /* make the whole logo visible instead of cropped */
+  .sh__logoBox {
+    width: 100px;
+    height: 100px;
+    background: transparent;   /* no tint behind the logo */
+    box-shadow: none;
+  }
+  .sh__logo {
+    object-fit: contain;        /* fit whole image */
+    padding: 6px;               /* breathing room for transparent edges */
+  }
+
+  /* exact typography for the brand text */
+  .sh__brandText {
+    font-size: 1.875rem;        /* 30px */
+    line-height: 2.25rem;       /* 36px */
+    font-weight: 700;
+  }
+}
+
 
         /* PLAIN HAMBURGER: no border, no background, no rounding */
         .sh__menuBtn {

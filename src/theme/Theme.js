@@ -99,9 +99,9 @@ const theme = {
   },
 
   fonts: {
-    body: "'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
-    heading: "'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
-    mono: "'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+    body: "'Playfair Display',serif",
+    heading: "'Playfair Display',serif",
+    mono: "'Playfair Display',  serif",
   },
 
   breakpoints: {
