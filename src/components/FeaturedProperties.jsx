@@ -118,7 +118,6 @@ export default function FeaturedProperties({
       position: "relative",
       isolation: "isolate",
       padding: "56px 0 72px",
-      // ⬇️ No per-section background, keep it transparent
       background: "transparent",
       color: theme.colors.foreground,
       fontFamily: theme.fonts.body,
@@ -133,11 +132,9 @@ export default function FeaturedProperties({
     },
     h2: {
       fontFamily: theme.fonts.heading,
-      // fontWeight: 800,
       fontSize: "3rem",
       lineHeight: 1,
       textAlign: "center",
-      // fontSize: "clamp(28px, 4.4vw, 54px)",
       margin: 0,
       color: theme.colors.cardForeground,
     },
@@ -148,7 +145,6 @@ export default function FeaturedProperties({
       maxWidth: 820,
       marginInline: "auto",
       lineHeight: "1.75rem",
-      // fontSize: "clamp(14px, 1.6vw, 18px)",
       fontSize: "1.25rem",
     },
     chips: {
@@ -397,12 +393,14 @@ export default function FeaturedProperties({
                                 (e.currentTarget.style.background =
                                   theme.colors.cardHover)
                               }
+                              // REMOVE the onClick handler below - it's causing the conflict
                               onClick={() => navigate(`/properties/${p._id}`)}
                             >
                               View Details
                             </button>
                           </div>
                         </Link>
+
                       </div>
                     </article>
                   );
@@ -433,6 +431,17 @@ export default function FeaturedProperties({
         @media (max-width: 640px) {
           .fp-grid { grid-template-columns: 1fr; }
           .fp-media { height: 200px; }
+        }
+
+        /* Mobile responsive font sizes */
+        @media (max-width: 768px) {
+          #featured-heading {
+            font-size: 1.7rem !important;
+          }
+          .fp-grid + p {
+            font-size: 1.1rem !important;
+            line-height: 1.5rem;
+          }
         }
       `}</style>
     </section>

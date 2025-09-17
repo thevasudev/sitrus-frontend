@@ -97,7 +97,8 @@ export default function SiteHeader({ brand = "Sitrus projects" }) {
           box-shadow: ${theme.shadows.card};
         }
         .sh__bar {
-          max-width: 1280px; margin: 0 auto; padding: 10px 18px;
+          max-width: 1280px; margin: 0 auto;
+           padding: 10px 18px;
           display: flex; align-items: center; gap: 16px;
           height: 80px;
         }
@@ -117,29 +118,7 @@ export default function SiteHeader({ brand = "Sitrus projects" }) {
         align-items: center; 
         
         gap: 28px; }
-        /* --- Mobile header fixes --- */
-@media (max-width: 900px) {
-  /* make the whole logo visible instead of cropped */
-  .sh__logoBox {
-    width: 100px;
-    height: 100px;
-    background: transparent;   /* no tint behind the logo */
-    box-shadow: none;
-  }
-  .sh__logo {
-    object-fit: contain;        /* fit whole image */
-    padding: 6px;               /* breathing room for transparent edges */
-  }
-
-  /* exact typography for the brand text */
-  .sh__brandText {
-    font-size: 1.875rem;        /* 30px */
-    line-height: 2.25rem;       /* 36px */
-    font-weight: 700;
-  }
-}
-
-
+        
         /* PLAIN HAMBURGER: no border, no background, no rounding */
         .sh__menuBtn {
           margin-left: auto;
@@ -179,8 +158,25 @@ export default function SiteHeader({ brand = "Sitrus projects" }) {
         @media (max-width: 900px) {
           .sh__nav { display: none; }
           .sh__menuBtn { display: flex; }
-          .sh__logoBox { width: 48px; height: 48px; }
-          .sh__brandText { font-size: 22px; }
+          
+          /* Increased logo size for mobile */
+          .sh__logoBox { 
+            width: 80px; 
+            height: 40px; 
+            background: transparent;
+            box-shadow: none;
+          }
+          
+          .sh__logo {
+            object-fit: contain;
+            padding: 6px;
+          }
+          
+          .sh__brandText { 
+            font-size: 1.675rem; /* 30px */
+            line-height: 2.25rem; /* 36px */
+            font-weight: 700;
+          }
         }
       `}</style>
     </header>

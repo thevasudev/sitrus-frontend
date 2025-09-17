@@ -104,15 +104,13 @@ export default function Team() {
           margin:0 0 6px; font-family:${theme.fonts.heading};
           font-weight:800; letter-spacing:.2px; line-height:1.15;
           font-size: clamp(32px, 3.6vw, 44px); 
-        //   color:${theme.colors.blueishblack}
-          ;
         }
         .subtitletwo{ 
-        margin:0;
-         color:${theme.colors.secondaryForeground};
-         font-size:1.3rem !important;,
-         line-height:1.75;
-          }
+          margin:0;
+          color:${theme.colors.secondaryForeground};
+          font-size:1.3rem;
+          line-height:1.75;
+        }
 
         .error{ color:${theme.colors.destructive}; text-align:center; margin: 10px 0 16px; }
 
@@ -157,8 +155,7 @@ export default function Team() {
         .role{
           color: ${theme.hex?.goldenyellow || "hsl(34 80% 48%)"};
           font-weight: 600; 
-          // font-style: italic;
-           margin-bottom: 14px;
+          margin-bottom: 14px;
           font-size: clamp(15px, 1.8vw, 18px);
         }
 
@@ -192,6 +189,17 @@ export default function Team() {
         .card.skeleton .line.short{ width: 64%; }
 
         @keyframes shimmer { 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+        
+        /* Mobile responsive font sizes */
+        @media (max-width: 768px) {
+          .title {
+            font-size: 1.7rem !important;
+          }
+          .subtitletwo {
+            font-size: 1.1rem !important;
+            line-height: 1.5rem;
+          }
+        }
       `}</style>
     </section>
   );

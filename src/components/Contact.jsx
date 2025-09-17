@@ -87,8 +87,13 @@ export default function Contact() {
             <span className="line2">Dream Property?</span>
           </h2>
           <p className="subtitle">
-            Get in touch with our expert team.<span> We're here to guide you through
-            every step of your real estate journey</span>.
+            Get in touch with our expert team.
+            <span>
+              {" "}
+              We're here to guide you through every step of your real estate
+              journey
+            </span>
+            .
           </p>
         </header>
 
@@ -125,12 +130,18 @@ export default function Contact() {
                     stroke="currentColor"
                     strokeWidth="1.8"
                   />
-                  <path d="m22 6-10 7L2 6" stroke="currentColor" strokeWidth="1.8" />
+                  <path
+                    d="m22 6-10 7L2 6"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  />
                 </svg>
               </div>
               <div>
                 <div className="card-title">Email Us</div>
-                <div className="card-desc">Get detailed information via email</div>
+                <div className="card-desc">
+                  Get detailed information via email
+                </div>
                 <a className="card-link" href="mailto:info@sitrusgroup.com">
                   info@sitrusgroups.com
                 </a>
@@ -146,7 +157,13 @@ export default function Contact() {
                     stroke="currentColor"
                     strokeWidth="1.8"
                   />
-                  <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.8" />
+                  <circle
+                    cx="12"
+                    cy="10"
+                    r="3"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  />
                 </svg>
               </div>
               <div>
@@ -166,7 +183,9 @@ export default function Contact() {
 
             {banner.msg && (
               <p
-                className={`banner ${banner.type === "error" ? "error" : "success"}`}
+                className={`banner ${
+                  banner.type === "error" ? "error" : "success"
+                }`}
                 role="status"
               >
                 {banner.msg}
@@ -229,7 +248,9 @@ export default function Contact() {
                       onChange({
                         target: {
                           name: "phone",
-                          value: e.target.value.replace(/[^\d]/g, "").slice(0, 10),
+                          value: e.target.value
+                            .replace(/[^\d]/g, "")
+                            .slice(0, 10),
                         },
                       })
                     }
@@ -285,7 +306,12 @@ export default function Contact() {
                 <button type="submit" disabled={loading}>
                   <span className="btn-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-                      <path d="M22 2 11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                      <path
+                        d="M22 2 11 13"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
                       <path
                         d="M22 2 15 22l-4-9-9-4 20-7Z"
                         stroke="currentColor"
@@ -376,8 +402,8 @@ export default function Contact() {
 }
 @media (max-width: ${theme.breakpoints.mobile}) {
   .row{ grid-template-columns: 1fr; }
-  .title .line1, .title .line2{ font-size: 2.5rem; }
-  .subtitle{ font-size: 1.125rem; }
+  .title .line1, .title .line2{ font-size: 1.7rem; }
+  .subtitle{ font-size: 1.1rem; }
 }
 
         /* left info stack */

@@ -50,7 +50,7 @@ const Icon = {
 };
 
 export default function About({
-  // keep prop for compatibility, but it’s unused now to avoid per-section bg
+  // keep prop for compatibility, but it's unused now to avoid per-section bg
   bgImage = null,
 }) {
   const green = theme.colors.primary;
@@ -166,7 +166,6 @@ export default function About({
           text-align: center;
           line-height: 1.625;
           color: ${theme.colors.accentForeground};
-          // font-size: clamp(14px, 1.6vw, 18px);
           font-size: 1.25rem;
           line-height: 1.625rem;
         }
@@ -226,7 +225,6 @@ export default function About({
           margin: 0 0 18px;
           font-size: 1.5rem;
           line-height: 2rem;
-          // font-size: clamp(18px, 3.2vw, 26px);
           color: ${theme.colors.cardForeground};
         }
 
@@ -272,6 +270,17 @@ export default function About({
           color: ${theme.colors.mutedForeground};
           line-height: 1.6;
           font-size: 14px;
+        }
+
+        /* Mobile responsive font sizes */
+        @media (max-width: 768px) {
+          .trust__title {
+            font-size: 1.75rem !important;
+          }
+          .trust__subtitle {
+            font-size: 1rem !important;
+            line-height: 1.5rem;
+          }
         }
       `}</style>
     </section>

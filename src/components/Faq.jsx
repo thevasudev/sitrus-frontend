@@ -338,13 +338,37 @@ export default function FAQSection({
       )} */}
 
       {/* Section chrome */}
+
+
+      
       <style>{`
         .faq-wrap {
           position: relative;
           padding: clamp(24px, 4vw, 48px) 12px clamp(56px, 7vw, 84px);
           // background: #f9f9f9;
           isolation: isolate;
+
+           
         }
+
+          @media (max-width: 1024px) {
+          .faq-wrap h1 {
+            font-size: 2rem !important; /* Tablet size */
+          }
+             .faq-wrap p {
+            font-size: 1.2rem !important; /* Tablet size */
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .faq-wrap h1 {
+            font-size: 1.7rem !important; /* Mobile size */
+          }
+            .faq-wrap p {
+            font-size: 1.1rem !important; /* Tablet size */
+          }
+        }
+
         .faq-btn:hover {
           filter: brightness(0.96);
           transform: translateY(-1px);

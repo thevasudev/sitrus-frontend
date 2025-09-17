@@ -133,13 +133,13 @@ const handleEdit = async (id) => {
           borderBottom: `1px solid ${theme.colors.border}`,
           paddingBottom: '1rem'
         }}>
-          <h1 style={{ 
+          <h2 style={{ 
             fontFamily: theme.fonts.heading,
             margin: 0,
             color: theme.colors.primary
           }}>
             FAQ Management
-          </h1>
+          </h2>
           <button
             onClick={() => setIsModalOpen(true)}
             style={{
@@ -182,7 +182,7 @@ const handleEdit = async (id) => {
 
         {/* FAQ List */}
         {!loading && faqs.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '2rem' }}>
+          <div style={{ textAlign: 'center', }}>
             <p>No FAQs found. Create your first one!</p>
           </div>
         )}

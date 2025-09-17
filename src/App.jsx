@@ -8,10 +8,12 @@ import Login from "./pages/Login";
 import RequireAuth from "./routes/RequiredAuth";
 import Index from "./pages/Index";
 import PropertyDetails from "./components/PropertyDetails";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
@@ -20,9 +22,11 @@ export default function App() {
         {/* Protected routes */}
         <Route element={<RequireAuth />}>
           <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<div>Dashboard</div>} />
-            <Route path="enquiries" element={<ContactsTable />} />
+            {/* <Route index element={<div>Enquiries</div>} /> */}
+            <Route index element={<ContactsTable />} />
             <Route path="properties" element={<PropertiesAdmin />} />
+
+
 
             <Route path="faq" element={<Faq />} />
             <Route path="team" element={<TeamManager />} />

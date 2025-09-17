@@ -135,8 +135,8 @@ export default function AdminLayout() {
 
   const navItems = useMemo(
     () => [
-      { label: "Dashboard", to: "/admin", icon: "grid" },
-      { label: "Enquiries", to: "/admin/enquiries", icon: "users" },
+      // { label: "Dashboard", to: "/admin", icon: "grid" },
+      { label: "Enquiries", to: "/admin", icon: "users" },
       { label: "Properties", to: "/admin/properties", icon: "book" },
       { label: "Team", to: "/admin/team", icon: "bag" },
       { label: "Faq", to: "/admin/faq", icon: "chart" },

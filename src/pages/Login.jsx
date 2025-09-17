@@ -11,7 +11,6 @@ const styles = {
     minHeight: "100vh",
     display: "grid",
     placeItems: "center",
-
     fontFamily: theme.fonts.body,
   },
   card: {
@@ -50,11 +49,11 @@ const styles = {
     },
   },
   brandLogoBox: {
-    width: 48,
-    height: 48,
+    width: 60, // Increased size
+    height: 60, // Increased size
     borderRadius: theme.radii.lg,
     overflow: "hidden",
-    background: theme.colors.muted,
+    background: "transparent", // Changed to transparent
     border: `1px solid ${theme.colors.border}`,
     boxShadow: theme.shadows.accent,
     display: "grid",
@@ -64,8 +63,9 @@ const styles = {
   brandLogoImg: {
     width: "100%",
     height: "100%",
-    objectFit: "cover",
+    objectFit: "contain", // Changed to contain to show full logo
     display: "block",
+    padding: 4, // Added padding for better visibility
   },
   title: {
     margin: 0,
@@ -110,6 +110,18 @@ const styles = {
       alignItems: "center",
       marginBottom: 16,
     },
+  },
+  mobileLogoBox: {
+    width: 80, // Larger for mobile
+    height: 80, // Larger for mobile
+    borderRadius: theme.radii.lg,
+    overflow: "hidden",
+    background: "transparent", // Transparent background
+    border: `1px solid ${theme.colors.border}`,
+    boxShadow: theme.shadows.accent,
+    display: "grid",
+    placeItems: "center",
+    marginBottom: 12,
   },
   field: {
     display: "grid",
@@ -294,7 +306,7 @@ export default function Login() {
           {/* Mobile-only brand header */}
           {isMobile && (
             <div style={mobileBrandStyle}>
-              <div style={styles.brandLogoBox}>
+              <div style={styles.mobileLogoBox}>
                 <img src={Logo} alt="Sitrus Projects logo" style={styles.brandLogoImg} />
               </div>
               <h2 style={{...styles.title, marginTop: 8}}>Sitrus projects</h2>

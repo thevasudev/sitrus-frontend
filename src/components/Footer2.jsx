@@ -3,7 +3,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../theme/Theme";
 
-export default function Footer2() {
+export default function Footer() {
   const phone = "+9196866102055";
   const email = "info@sitrusgroups.com";
   const address =
@@ -11,7 +11,6 @@ export default function Footer2() {
 
   const year = new Date().getFullYear();
 
-  // ---- make footer links work like header ----
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,13 +22,11 @@ export default function Footer2() {
   const go = (id) => (e) => {
     e.preventDefault();
     if (location.pathname !== "/") {
-      // jump to home with hash; Index.jsx should scroll on mount
       navigate(`/#${id}`);
     } else {
       scrollToId(id);
     }
   };
-  // ------------------------------------------------
 
   return (
     <footer className="sp-footer" role="contentinfo">
@@ -66,9 +63,7 @@ export default function Footer2() {
                   />
                 </svg>
               </span>
-              <a href={`tel:${phone}`} className="contact__text">
-                {phone}
-              </a>
+              <a href={`tel:${phone}`} className="contact__text">{phone}</a>
             </li>
 
             <li>
@@ -83,9 +78,7 @@ export default function Footer2() {
                   <path d="m22 6-10 7L2 6" stroke="currentColor" strokeWidth="1.5" />
                 </svg>
               </span>
-              <a href={`mailto:${email}`} className="contact__text">
-                {email}
-              </a>
+              <a href={`mailto:${email}`} className="contact__text">{email}</a>
             </li>
 
             <li className="contact__address">
@@ -105,19 +98,13 @@ export default function Footer2() {
           </ul>
         </div>
 
-        {/* Right: Quick links (behave like header) */}
+        {/* Right: Quick links */}
         <div className="sp-footer__links">
           <h4 className="links__title">Quick Links</h4>
           <nav className="links__nav" aria-label="Quick links">
-            {/* <a href="/#properties" className="links__item" onClick={go("properties")}>
-              Properties
-            </a> */}
-            <a href="/#about" className="links__item" onClick={go("about")}>
-              About Us
-            </a>
-            {/* <a href="/#contact" className="links__item" onClick={go("contact")}>
-              Contact
-            </a> */}
+            <a href="/#properties" className="links__item" onClick={go("properties")}>Properties</a>
+            <a href="/#about" className="links__item" onClick={go("about")}>About Us</a>
+            <a href="/#contact" className="links__item" onClick={go("contact")}>Contact</a>
           </nav>
         </div>
       </div>
@@ -128,24 +115,23 @@ export default function Footer2() {
 
         <div className="bar__right">
           <span className="bar__follow">Follow us:</span>
-
-          <a className="social" aria-label="Facebook" href="https://www.facebook.com/sitrusgroup/" target="_blank" rel="noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.2 3-3.2.9 0 1.8.16 1.8.16v2h-1c-1 0-1.4.62-1.4 1.3V12h2.4l-.4 3h-2v7A10 10 0 0 0 22 12Z" />
-            </svg>
-          </a>
-
-          <a className="social" aria-label="Instagram" href="https://www.instagram.com/sitrus_projects/" target="_blank" rel="noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.5-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2Z" />
-            </svg>
-          </a>
-
-          <a className="social" aria-label="LinkedIn" href="https://www.linkedin.com/company/sitrus-projects/" target="_blank" rel="noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8h4V23h-4V8ZM8 8h3.8v2.05h.05c.53-1 1.83-2.05 3.76-2.05C19.6 8 22 10 22 13.9V23h-4v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.77 1.86-2.77 3.8V23H8V8Z" />
-            </svg>
-          </a>
+          <div className="bar__socials">
+            <a className="social" aria-label="Facebook" href="https://www.facebook.com/sitrusgroup/" target="_blank" rel="noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.2 3-3.2.9 0 1.8.16 1.8.16v2h-1c-1 0-1.4.62-1.4 1.3V12h2.4l-.4 3h-2v7A10 10 0 0 0 22 12Z" />
+              </svg>
+            </a>
+            <a className="social" aria-label="Instagram" href="https://www.instagram.com/sitrus_projects/" target="_blank" rel="noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm6.5-.9a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2Z" />
+              </svg>
+            </a>
+            <a className="social" aria-label="LinkedIn" href="https://www.linkedin.com/company/sitrus-projects/" target="_blank" rel="noreferrer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8h4V23h-4V8ZM8 8h3.8v2.05h.05c.53-1 1.83-2.05 3.76-2.05C19.6 8 22 10 22 13.9V23h-4v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.77 1.86-2.77 3.8V23H8V8Z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
 
@@ -169,24 +155,89 @@ export default function Footer2() {
           .sp-footer__inner { grid-template-columns: 1fr; }
         }
 
-        .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-        .brand__badge {
-          width: 36px; height: 36px; border-radius: ${theme.radii.md};
-          background: ${theme.colors.accent}; color: ${theme.colors.accentForeground};
-          display: grid; place-items: center; box-shadow: ${theme.shadows.accent};
+        .brand {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 14px;
         }
-        .brand__name { margin: 0; font-family: ${theme.fonts.heading}; font-size: 1.4rem; font-weight: 700; letter-spacing: .2px; }
-        .brand__copy { color: ${theme.colors.accentMuted}; max-width: 780px; line-height: 1.8; margin: 10px 0 18px; }
+        .brand__badge {
+          width: 36px;
+          height: 36px;
+          border-radius: ${theme.radii.md};
+          background: ${theme.colors.accent};
+          color: ${theme.colors.accentForeground};
+          display: grid;
+          place-items: center;
+          box-shadow: ${theme.shadows.accent};
+        }
+        .brand__name {
+          margin: 0;
+          font-family: ${theme.fonts.heading};
+          font-size: 1.4rem;
+          font-weight: 700;
+          letter-spacing: .2px;
+        }
+        .brand__copy {
+          color: hsl(var(--primary-foreground) / 0.8);
+          max-width: 780px;
+          line-height: 1.625;
+          margin: 10px 0 18px;
+          font-size: 1rem;
+        }
 
-        .contact { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; color: ${theme.colors.card}; }
-        .contact li { display: grid; grid-template-columns: 22px 1fr; align-items: start; gap: 10px; }
-        .contact__icon { width: 22px; height: 22px; color: ${theme.colors.accent}; }
-        .contact__text { white-space: pre-line; color: ${theme.colors.card}; text-decoration: none; }
-        .contact a.contact__text:hover { text-decoration: underline; }
+        .contact {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          display: grid;
+          gap: 10px;
+          color: ${theme.colors.card};
+        }
+        .contact li {
+          display: grid;
+          grid-template-columns: 22px 1fr;
+          align-items: start;
+          gap: 10px;
+        }
+        .contact__icon {
+          width: 22px;
+          height: 22px;
+          color: ${theme.colors.accent};
+        }
+        .contact__text {
+          white-space: pre-line;
+          color: ${theme.colors.card};
+          text-decoration: none;
+        }
+        .contact a.contact__text:hover {
+          text-decoration: underline;
+        }
 
-        .sp-footer__links { padding-top: 8px; }
-        .links__title { font-family: ${theme.fonts.heading}; font-weight: 700; margin: 0 0 12px; }
-        .links__nav { display: grid; gap: 12px; }
+        .sp-footer__links {
+          padding-top: 8px;
+
+          @media (max-width: ${theme.breakpoints.tablet}) {
+            margin-top: 32px;
+          }
+          
+        }
+        .links__title {
+          font-family: ${theme.fonts.heading};
+          font-weight: 700;
+          margin: 0 0 12px;
+        }
+        .links__nav {
+          display: grid;
+          gap: 12px;
+
+          @media (max-width: ${theme.breakpoints.mobile}) {
+            gap: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+          }
+        }
         .links__item {
           color: ${theme.colors.muted};
           text-decoration: none;
@@ -200,29 +251,60 @@ export default function Footer2() {
           border-bottom-color: ${theme.colors.accent};
         }
 
-        .sp-footer__bar { border-top: 1px solid ${theme.colors.border}; padding: 14px 22px; margin-top: 8px; }
+        .sp-footer__bar {
+          border-top: 1px solid ${theme.colors.border};
+          padding: 14px 22px;
+          margin-top: 8px;
+        }
         .bar__left, .bar__right {
-          max-width: 1200px; margin: 0 auto;
-          display: flex; align-items: center; justify-content: space-between; gap: 12px;
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
           color: ${theme.colors.muted};
         }
+
         @media (max-width: ${theme.breakpoints.tablet}) {
-          .bar__left, .bar__right { flex-direction: column; gap: 14px; }
+          .bar__left, .bar__right {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 14px;
+          }
+          .bar__socials {
+            margin-top: 6px;
+          }
         }
-        .bar__right { justify-content: flex-end; }
-        .bar__follow { margin-right: 6px; }
+
+        .bar__right {
+          justify-content: flex-end;
+          flex-wrap: wrap;
+        }
+        .bar__follow {
+          margin-right: 6px;
+        }
+
+        .bar__socials {
+          display: flex;
+          gap: 8px;
+        }
 
         .social {
-          width: 32px; height: 32px; display: grid; place-items: center;
+          width: 32px;
+          height: 32px;
+          display: grid;
+          place-items: center;
           border-radius: ${theme.radii.full};
           background: ${theme.colors.secondary};
           color: ${theme.colors.secondaryForeground};
           border: 1px solid ${theme.colors.border};
-          margin-left: 8px;
           transition: ${theme.transitions.smooth};
           text-decoration: none;
         }
-        .social:hover { transform: translateY(-1px); }
+        .social:hover {
+          transform: translateY(-1px);
+        }
       `}</style>
     </footer>
   );

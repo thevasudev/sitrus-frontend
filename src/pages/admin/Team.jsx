@@ -230,7 +230,7 @@ const TeamManager = () => {
             paddingBottom: '1rem',
           }}
         >
-          <h1
+          <h2
             style={{
               fontFamily: theme.fonts.heading,
               margin: 0,
@@ -238,7 +238,7 @@ const TeamManager = () => {
             }}
           >
             Team Management
-          </h1>
+          </h2>
           <button
             onClick={() => {
               setEditingTeam(null);

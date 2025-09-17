@@ -473,9 +473,9 @@ export default function PropertiesAdmin() {
       <div style={cardStyle}>
         {/* header */}
         <div style={headerBarStyle}>
-          <h1 style={{ margin: 0, fontFamily: theme.fonts.heading, color: theme.colors.primary }}>
+          <h2 style={{ margin: 0, fontFamily: theme.fonts.heading, color: theme.colors.primary }}>
             Properties
-          </h1>
+          </h2>
 
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <input
